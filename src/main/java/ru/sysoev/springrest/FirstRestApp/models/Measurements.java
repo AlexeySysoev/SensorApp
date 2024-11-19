@@ -22,7 +22,7 @@ public class Measurements {
     //Поработать со связью один ко многим (посмотреть урок)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
-    private Sensor owner;
+    private Sensor sensor;
     @Column(name = "time_of_measure")
     private LocalDateTime timeOfMeasure;
 
@@ -50,12 +50,12 @@ public class Measurements {
         this.raining = raining;
     }
 
-    public Sensor getOwner() {
-        return owner;
+    public Sensor getSensor() {
+        return sensor;
     }
 
-    public void setOwner(Sensor owner) {
-        this.owner = owner;
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
 
     public LocalDateTime getTimeOfMeasure() {
@@ -72,7 +72,7 @@ public class Measurements {
                 "id=" + id +
                 ", value=" + value +
                 ", raining=" + raining +
-                ", owner=" + owner +
+                ", owner=" + sensor +
                 ", timeOfMeasure=" + timeOfMeasure +
                 '}';
     }

@@ -2,7 +2,6 @@ package ru.sysoev.springrest.FirstRestApp.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import ru.sysoev.springrest.FirstRestApp.models.Sensor;
 
 public class MeasurementsDTO {
     @NotEmpty
@@ -10,7 +9,11 @@ public class MeasurementsDTO {
     private double value;
     @NotEmpty
     private boolean raining;
-    private SensorDTO sensorDTO;
+
+    private SensorDTO sensor;
+    public MeasurementsDTO(){};
+
+
 
     public double getValue() {
         return value;
@@ -28,12 +31,12 @@ public class MeasurementsDTO {
         this.raining = raining;
     }
 
-    public SensorDTO getSensorDTO() {
-        return sensorDTO;
+    public SensorDTO getSensor() {
+        return sensor;
     }
 
-    public void setSensorDTO(SensorDTO sensorDTO) {
-        this.sensorDTO = sensorDTO;
+    public void setSensor(SensorDTO sensor) {
+        this.sensor = sensor;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class MeasurementsDTO {
         return "MeasurementsDTO{" +
                 "value=" + value +
                 ", raining=" + raining +
-                ", sensor=" + sensorDTO +
+                ", sensor=" + sensor.getName() +
                 '}';
     }
 }

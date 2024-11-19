@@ -1,7 +1,9 @@
 package ru.sysoev.springrest.FirstRestApp.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 
@@ -16,12 +18,14 @@ public class Sensor {
     @Column(name = "id")
     private int id;
     @NotEmpty(message = "Name should not be empty")
+    @NotBlank(message = "name must contain only letters and numbers")
+    @NotNull
     @Size (min = 3, max = 30, message = "Name of sensor from3 to 30 characters")
     @Column(name = "name")
     private String name;
     @Column (name = "created_at")
     private LocalDateTime createdAt;
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sensor", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Measurements> measurementsList;
 
