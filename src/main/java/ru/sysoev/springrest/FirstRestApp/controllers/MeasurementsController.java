@@ -1,18 +1,12 @@
 package ru.sysoev.springrest.FirstRestApp.controllers;
 
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.sysoev.springrest.FirstRestApp.dto.MeasurementsDTO;
-import ru.sysoev.springrest.FirstRestApp.dto.SensorDTO;
-import ru.sysoev.springrest.FirstRestApp.models.Measurements;
-import ru.sysoev.springrest.FirstRestApp.models.Sensor;
 import ru.sysoev.springrest.FirstRestApp.services.MeasurementsService;
-import ru.sysoev.springrest.FirstRestApp.services.SensorService;
 import ru.sysoev.springrest.FirstRestApp.util.DTO.DTOConverter;
 import ru.sysoev.springrest.FirstRestApp.util.sensor.SensorErrorResponse;
 import ru.sysoev.springrest.FirstRestApp.util.sensor.SensorNotFoundException;

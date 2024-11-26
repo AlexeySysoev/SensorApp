@@ -15,9 +15,7 @@ import ru.sysoev.springrest.FirstRestApp.util.PersonErrorResponse;
 import ru.sysoev.springrest.FirstRestApp.util.PersonNotCreatedException;
 import ru.sysoev.springrest.FirstRestApp.util.PersonNotFoundException;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -48,14 +46,12 @@ public class PeopleController {
             //send message to user
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
-            errors.forEach((error) -> {errorMsg.append(error.getField()).append(" - ")
-                    .append(error.getDefaultMessage()).append(";");});
+            errors.forEach((error) -> errorMsg.append(error.getField()).append(" - ")
+                    .append(error.getDefaultMessage()).append(";"));
             throw new PersonNotCreatedException(errorMsg.toString());
         }
         peopleService.save(convertToPerson(personDTO));
         return ResponseEntity.ok(HttpStatus.OK);
-
-
     }
     @ExceptionHandler
     private ResponseEntity<PersonErrorResponse> handleException(PersonNotFoundException e) {
