@@ -33,6 +33,10 @@ public class Person {
     @Column(name = "created_who")
     @NotEmpty
     private String createdWho;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "role")
+    private String role;
 
     public void setId(Long id) {
         this.id = id;
@@ -88,5 +92,21 @@ public class Person {
 
     public void setCreatedWho(String createdWho) {
         this.createdWho = createdWho;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

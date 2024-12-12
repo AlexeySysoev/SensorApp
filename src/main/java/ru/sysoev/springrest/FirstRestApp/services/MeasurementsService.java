@@ -33,6 +33,10 @@ public class MeasurementsService {
     public List<Measurements> findRainyDays() {
         return measurementsRepository.findMeasurementsByRainingIsTrue();
     }
+
+    public List<Measurements> findBySensorId(int sensorId) {
+        return measurementsRepository.findMeasurementsBySensor_Id(sensorId);
+    }
     private void enrichMeasurements(Measurements measurements) {
 
         measurements.setTimeOfMeasure(LocalDateTime.now());

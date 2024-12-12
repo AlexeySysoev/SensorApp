@@ -43,4 +43,9 @@ public class SensorValidator implements Validator {
         Optional<Sensor> dbSensor = Optional.ofNullable(sensorService.findOne(sensor.getName()));
         return dbSensor.isPresent();
     }
+    public Sensor checkSensorId (Object target) {
+        Sensor sensor = (Sensor) target;
+        Optional<Sensor> dbSensor = Optional.ofNullable(sensorService.findOne(sensor.getName()));
+        return dbSensor.orElse(null);
+    }
 }

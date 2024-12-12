@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MeasurementsRepository extends JpaRepository<Measurements, Integer> {
     List<Measurements> findMeasurementsByRainingIsTrue();
+    List<Measurements> findMeasurementsBySensor_Id(int sensor_id);
 }

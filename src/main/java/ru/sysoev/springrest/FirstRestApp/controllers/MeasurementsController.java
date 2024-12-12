@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sysoev.springrest.FirstRestApp.dto.MeasurementsDTO;
+import ru.sysoev.springrest.FirstRestApp.dto.SensorDTO;
+import ru.sysoev.springrest.FirstRestApp.models.Sensor;
 import ru.sysoev.springrest.FirstRestApp.services.MeasurementsService;
 import ru.sysoev.springrest.FirstRestApp.util.DTO.DTOConverter;
 import ru.sysoev.springrest.FirstRestApp.util.sensor.SensorErrorResponse;
@@ -43,7 +45,14 @@ public class MeasurementsController {
     public List<MeasurementsDTO> getAllMeasurements() {
     return measurementsService.findAll().stream().map(dtoConverter::convertToMeasurementsDTO).collect(Collectors.toList());
     }
-    @GetMapping("rainyDaysCount")
+    @GetMapping("/bySensor")
+    public List<MeasurementsDTO> getMeasurementsBySensor(@RequestBody @Valid SensorDTO sensorDTO) {
+        Sensor sensor = sensorValidator.checkSensorId(dtoConverter.convertToSensor(sensorDTO));
+        return measurementsService.findBySensorId(sensor.getId()).stream()
+                .map(dtoConverter::convertToMeasurementsDTO).collect(Collectors.toList());
+    }
+
+    @GetMapping("/rainyDaysCount")
     //отображает количество дождливых дней
     public List<MeasurementsDTO> getRainyDays() {
     return measurementsService.findRainyDays().stream().map(dtoConverter::convertToMeasurementsDTO).collect(Collectors.toList());
